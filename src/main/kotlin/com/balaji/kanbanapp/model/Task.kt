@@ -36,8 +36,7 @@ data class Task(
     @Column(name = "TASK_END_DATE")
     var endDate: String? = null,
 
-) {
-    override fun toString(): String {
-        return "Task(id=$id, title='$title', description=$description, status='$status', priority='$priority', assignedTo=$assignedTo)"
-    }
-}
+    @Column(name="TASK_ACTIVE")
+    var isActive : Int? = null
+
+)
