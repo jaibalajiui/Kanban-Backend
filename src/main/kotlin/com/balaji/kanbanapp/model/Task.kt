@@ -5,6 +5,8 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 
 @Entity
@@ -27,8 +29,9 @@ data class Task(
     @Column(name = "TASK_PRIORITY")
     var priority: String = "LOW",
 
-    @Column(name = "TASK_ASSIGNED_TO")
-    var assignedTo: String? = null,
+    @ManyToOne
+    @JoinColumn(name = "TASK_ASSIGNED_TO")
+    var assignedTo: Person? = null,
 
     @Column(name = "TASK_START_DATE")
     var startDate: String? = null,

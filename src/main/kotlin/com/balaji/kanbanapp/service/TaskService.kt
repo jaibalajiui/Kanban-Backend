@@ -1,6 +1,7 @@
 package com.balaji.kanbanapp.service
 
 import com.balaji.kanbanapp.dto.TaskDto
+import com.balaji.kanbanapp.model.Person
 import com.balaji.kanbanapp.model.Task
 import com.balaji.kanbanapp.repository.TaskRepository
 import org.springframework.http.HttpStatus
@@ -22,7 +23,8 @@ class TaskService(val taskRepository: TaskRepository) {
         }else {
             // Placeholder implementation
             val taskResultDto = taskResult.map {
-                TaskDto(it.id, it.title, it.description, it.status, it.priority, it.assignedTo,it.startDate,it.endDate, )
+                TaskDto(it.id, it.title, it.description, it.status, it.priority,
+                    it.assignedTo as String?,it.startDate,it.endDate, )
             }
             return ResponseEntity(taskResultDto, HttpStatus.OK)
         }
@@ -52,7 +54,7 @@ class TaskService(val taskRepository: TaskRepository) {
             it.description = updatedTask.taskDescription
             it.startDate = updatedTask.startDate
             it.endDate = updatedTask.endDate
-            it.assignedTo = updatedTask.assignedTo
+            it.assignedTo = updatedTask.assignedTo as Person?
             taskRepository.save(it)
             return ResponseEntity(it, HttpStatus.OK)
         }
